@@ -12,7 +12,9 @@ main.addEventListener('click', (e) => {
 });
 
 //팝업닫기 이벤트
-document.body.addEventListener('click', (e) => removePop(e));
+document.body.addEventListener('click', (e) => {
+	removePop(e);
+});
 
 //data fetching
 async function getData() {
