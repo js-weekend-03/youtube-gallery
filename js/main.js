@@ -8,7 +8,7 @@ main.addEventListener('click', (e) => {
 	e.preventDefault();
 	if (e.target.parentNode.nodeName !== 'A') return;
 	const vidId = e.target.closest('a').getAttribute('href');
-	createPop();
+	createPop(vidId);
 });
 
 //팝업닫기 이벤트
@@ -57,10 +57,12 @@ function createList(data) {
 }
 
 //creating Pop
-function createPop() {
+function createPop(id) {
 	const pop = document.createElement('aside');
 	pop.innerHTML = `
     <div class='con'>
+      <iframe src='https://www.youtube.com/embed/${id}' frameBorder=0 width='100%' height='100%'>
+      </iframe>
     </div>
 
     <span class='close'>close</span>
