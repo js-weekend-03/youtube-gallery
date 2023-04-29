@@ -3,12 +3,16 @@ const main = document.querySelector('main');
 //binding Event
 getData();
 
+//팝업 생성 이벤트
 main.addEventListener('click', (e) => {
 	e.preventDefault();
 	if (e.target.parentNode.nodeName !== 'A') return;
 	const vidId = e.target.closest('a').getAttribute('href');
 	createPop();
 });
+
+//팝업닫기 이벤트
+document.body.addEventListener('click', (e) => removePop(e));
 
 //data fetching
 async function getData() {
@@ -66,4 +70,10 @@ function createPop() {
 	//append메서드의 인수로는 문자열이 아닌 nodeElement 객체만 들어갈 수 있으므로
 	//pop자체를 createElemet로 생성
 	document.body.append(pop);
+}
+
+//removing Pop
+function removePop(e) {
+	const pop = document.querySelector('aside');
+	e.target === pop.querySelector('span') && e.target.closest('aside').remove();
 }
