@@ -1,13 +1,27 @@
-const key = 'AIzaSyBMYWEfZOCgkS3kcTBkz-shsPAQmfENdZU';
-const list = 'PLHtvRFLN5v-W5bQjvyH8QTdQQhgflJ3nu';
-const num = 10;
-const url = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&key=${key}&maxResults=${num}&playlistId=${list}`;
 const main = document.querySelector('main');
 
+//binding Event
+getData();
+
+main.addEventListener('click', (e) => {
+	e.preventDefault();
+	if (e.target.parentNode.nodeName !== 'A') return;
+	const vidId = e.target.closest('a').getAttribute('href');
+	console.log(vidId);
+});
+
 //data fetching
-fetch(url)
-	.then((data) => data.json())
-	.then((json) => createList(json.items));
+async function getData() {
+	const key = 'AIzaSyBMYWEfZOCgkS3kcTBkz-shsPAQmfENdZU';
+	const list = 'PLHtvRFLN5v-W5bQjvyH8QTdQQhgflJ3nu';
+	const num = 10;
+	const url = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&key=${key}&maxResults=${num}&playlistId=${list}`;
+
+	fetch(url);
+	const data = await fetch(url);
+	const json = await data.json();
+	createList(json.items);
+}
 
 //creating DOM
 function createList(data) {
@@ -37,11 +51,3 @@ function createList(data) {
 	//동적으로 DOM이 생성되는 시점
 	main.innerHTML = tags;
 }
-
-//binding Event
-main.addEventListener('click', (e) => {
-	e.preventDefault();
-	if (e.target.parentNode.nodeName !== 'A') return;
-	const vidId = e.target.closest('a').getAttribute('href');
-	console.log(vidId);
-});
