@@ -23,11 +23,16 @@ fetch(url)
 			desc = desc.length > 200 ? desc.substr(0, 200) + '...' : desc;
 
 			tags += `
-        <article>
-          <h2>${tit}</h2>
-          <img src=${item.snippet.thumbnails.standard.url} alt=${tit} />
-          <p>${desc}</p>
-          <span>${item.snippet.publishedAt.split('T')[0]}</span>
+        <article>          
+          <a class='pic' href=${item.snippet.resourceId.videoId}>
+            <img src=${item.snippet.thumbnails.standard.url} alt=${tit} />
+          </a>
+
+          <div class='con'>
+            <h2>${tit}</h2>
+            <p>${desc}</p>
+            <span>${item.snippet.publishedAt.split('T')[0]}</span>
+          </div>
         </article>
       `;
 		});
