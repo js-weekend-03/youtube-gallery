@@ -13,6 +13,7 @@ main.addEventListener('click', (e) => {
 
 //팝업닫기 이벤트
 document.body.addEventListener('click', (e) => {
+	if (e.target.nodeName !== 'SPAN') return;
 	removePop(e);
 });
 
@@ -60,6 +61,7 @@ function createList(data) {
 
 //creating Pop
 function createPop(id) {
+	document.body.style.overflow = 'hidden';
 	const pop = document.createElement('aside');
 	pop.innerHTML = `
     <div class='con'>
@@ -78,6 +80,6 @@ function createPop(id) {
 
 //removing Pop
 function removePop(e) {
-	const pop = document.querySelector('aside');
-	e.target === pop.querySelector('span') && e.target.closest('aside').remove();
+	document.body.style.overflow = 'auto';
+	e.target.closest('aside').remove();
 }
