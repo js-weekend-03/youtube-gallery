@@ -17,9 +17,17 @@ fetch(url)
 		let tags = '';
 
 		json.items.forEach((item) => {
+			let tit = item.snippet.title;
+			let desc = item.snippet.description;
+			tit = tit.length > 50 ? tit.substr(0, 50) + '...' : tit;
+			desc = desc.length > 200 ? desc.substr(0, 200) + '...' : desc;
+
 			tags += `
         <article>
-          <h2>${item.snippet.title}</h2>
+          <h2>${tit}</h2>
+          <img src=${item.snippet.thumbnails.standard.url} alt=${tit} />
+          <p>${desc}</p>
+          <span>${item.snippet.publishedAt.split('T')[0]}</span>
         </article>
       `;
 		});
