@@ -4,15 +4,12 @@ const num = 10;
 const url = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&key=${key}&maxResults=${num}&playlistId=${list}`;
 const main = document.querySelector('main');
 
-//youtube api 데이터 호출 url로 부터 데이터 fetching
+//미션 - 각 썸네일 클릭시 링크의 기본 기능 막고 href값의 고유 영상 아이디값 콘솔출력
 fetch(url)
 	.then((data) => {
-		//promise객체로 반환된 데이터를 json형식으로 변환해서 다시 반환
 		return data.json();
 	})
 	.then((json) => {
-		//동기적으로 반환된 json데이터에서 배열값을 가져와
-		//동적으로 DOM생성
 		console.log(json.items);
 		let tags = '';
 
@@ -37,5 +34,15 @@ fetch(url)
       `;
 		});
 
+		//동적으로 DOM이 생성되는 시점
 		main.innerHTML = tags;
 	});
+
+//이벤트 위임으로 동적생성된 요소에 이벤트 연결
+//이벤트 위임 (event delegate) - 현재 없는 요소에 이벤트를 전달하기 위해 항상 있는 상위 요소에 이벤트를 위임 (이벤트 버블링 활용)
+main.addEventListener('click', (e) => {
+	e.preventDefault();
+	if (e.target.parentNode.nodeName !== 'A') return;
+	const vidId = e.target.closest('a').getAttribute('href');
+	console.log(vidId);
+});
