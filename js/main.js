@@ -7,7 +7,7 @@ main.addEventListener('click', (e) => {
 	e.preventDefault();
 	if (e.target.parentNode.nodeName !== 'A') return;
 	const vidId = e.target.closest('a').getAttribute('href');
-	console.log(vidId);
+	createPop();
 });
 
 //data fetching
@@ -50,4 +50,20 @@ function createList(data) {
 
 	//동적으로 DOM이 생성되는 시점
 	main.innerHTML = tags;
+}
+
+//creating Pop
+function createPop() {
+	const pop = document.createElement('aside');
+	pop.innerHTML = `
+    <div class='con'>
+    </div>
+
+    <span class='close'>close</span>
+  `;
+
+	//기존의 메인 컨텐츠 내용을 유지하면서 새롭게 pop요소를 추가해야 되므로 append메서드 호출
+	//append메서드의 인수로는 문자열이 아닌 nodeElement 객체만 들어갈 수 있으므로
+	//pop자체를 createElemet로 생성
+	document.body.append(pop);
 }
