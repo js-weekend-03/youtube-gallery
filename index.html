@@ -10,13 +10,23 @@
   <script src="js/youtube.js"></script>
   <script>
     window.onload = () => {
-      new Youtube();
+      new Youtube('#frame1', {
+        playlistId: 'PLHtvRFLN5v-W5bQjvyH8QTdQQhgflJ3nu',
+        num: 4
+      });
+
+      new Youtube('#frame2', {
+        playlistId: 'PLHtvRFLN5v-UVVpNfWqtgZ6YPs9ZJMWRK',
+        num: 10
+      })
     }
   </script>
 </head>
 
 <body>
-  <main></main>
+  <main id="frame1"></main>
+  <hr />
+  <main id="frame2"></main>
 </body>
 
 </html>

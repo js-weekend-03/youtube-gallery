@@ -1,6 +1,8 @@
 class Youtube {
-	constructor() {
-		this.main = document.querySelector('main');
+	constructor(selector, option) {
+		this.main = document.querySelector(selector);
+		this.playlistId = option.playlistId;
+		this.num = option.num;
 		this.getData();
 
 		this.main.addEventListener('click', (e) => {
@@ -17,8 +19,8 @@ class Youtube {
 	}
 	async getData() {
 		const key = 'AIzaSyBMYWEfZOCgkS3kcTBkz-shsPAQmfENdZU';
-		const list = 'PLHtvRFLN5v-W5bQjvyH8QTdQQhgflJ3nu';
-		const num = 10;
+		const list = this.playlistId;
+		const num = this.num;
 		const url = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&key=${key}&maxResults=${num}&playlistId=${list}`;
 
 		fetch(url);
