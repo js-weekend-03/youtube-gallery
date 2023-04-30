@@ -1,9 +1,8 @@
 const main = document.querySelector('main');
 
-//binding Event
+//event binding
 getData();
 
-//팝업 생성 이벤트
 main.addEventListener('click', (e) => {
 	e.preventDefault();
 	if (e.target.parentNode.nodeName !== 'A') return;
@@ -11,7 +10,6 @@ main.addEventListener('click', (e) => {
 	createPop(vidId);
 });
 
-//팝업닫기 이벤트
 document.body.addEventListener('click', (e) => {
 	if (e.target.nodeName !== 'SPAN') return;
 	removePop(e);
@@ -76,6 +74,8 @@ function createPop(id) {
 	//append메서드의 인수로는 문자열이 아닌 nodeElement 객체만 들어갈 수 있으므로
 	//pop자체를 createElemet로 생성
 	document.body.append(pop);
+
+	//promise객체 생성하지 않더라도 setTimeout을 이용해 강제적으로 callstack에서 실행해야 될 코드를 web api에 넘겼다가 콜스택의 마지막 순번으로 등록되도록 처리
 	setTimeout(() => document.querySelector('aside').classList.add('on'), 0);
 }
 
