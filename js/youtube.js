@@ -1,8 +1,13 @@
 class Youtube {
 	constructor(selector, option) {
+		const def_opt = {
+			playlistId: 'PLHtvRFLN5v-W5bQjvyH8QTdQQhgflJ3nu',
+			num: 4,
+		};
+		const result_opt = { ...def_opt, ...option };
 		this.main = document.querySelector(selector);
-		this.playlistId = option.playlistId;
-		this.num = option.num;
+		this.playlistId = result_opt.playlistId;
+		this.num = result_opt.num;
 		this.getData();
 
 		this.main.addEventListener('click', (e) => {
