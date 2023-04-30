@@ -2,6 +2,18 @@ class Youtube {
 	constructor() {
 		this.main = document.querySelector('main');
 		this.getData();
+
+		this.main.addEventListener('click', (e) => {
+			e.preventDefault();
+			if (e.target.parentNode.nodeName !== 'A') return;
+			const vidId = e.target.closest('a').getAttribute('href');
+			this.createPop(vidId);
+		});
+
+		document.body.addEventListener('click', (e) => {
+			if (e.target.nodeName !== 'SPAN') return;
+			this.removePop(e);
+		});
 	}
 	async getData() {
 		const key = 'AIzaSyBMYWEfZOCgkS3kcTBkz-shsPAQmfENdZU';
