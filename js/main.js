@@ -76,10 +76,13 @@ function createPop(id) {
 	//append메서드의 인수로는 문자열이 아닌 nodeElement 객체만 들어갈 수 있으므로
 	//pop자체를 createElemet로 생성
 	document.body.append(pop);
+	setTimeout(() => document.querySelector('aside').classList.add('on'), 0);
 }
 
 //removing Pop
 function removePop(e) {
 	document.body.style.overflow = 'auto';
-	e.target.closest('aside').remove();
+	const pop = document.querySelector('aside');
+	pop.classList.remove('on');
+	setTimeout(() => e.target.closest('aside').remove(), 1000);
 }
